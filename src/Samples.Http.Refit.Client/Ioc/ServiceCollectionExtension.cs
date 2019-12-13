@@ -10,7 +10,7 @@
         public static IServiceCollection AddValuesServices(this IServiceCollection services)
         {
             return services
-                .AddSingleton<MyToken>() //will eventually inject from HTTP pipeline
+                .AddSingleton<MyToken>(provider => "my-token" ) //will eventually inject from HTTP pipeline
                 .AddTransient<IValuesController>(provider =>
                 {
                     var token = provider.GetRequiredService<MyToken>();

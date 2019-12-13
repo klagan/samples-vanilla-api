@@ -3,11 +3,10 @@
     using System;
     using System.Threading.Tasks;
     using Refit;
-    using Core;
 
-    public static class ValuesControllerExtension
+    public static class ControllerExtension
     {
-        public static async Task<T> RequestAsync<T>(this IValuesController api, Func<IValuesController, Task<T>> action)
+        public static async Task<T> RequestAsync<T, TController>(this TController api, Func<TController, Task<T>> action)
         {
             try
             {

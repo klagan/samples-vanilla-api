@@ -1,2 +1,6 @@
 # samples-vanilla-api
-Vanilla example of web API
+
+
+A quick rundown of what is happening here
+
+![sd](docs/diagram.png)
