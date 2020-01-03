@@ -2,7 +2,8 @@
 {
     using System;
     using Microsoft.AspNetCore.Mvc;
-    using Samples.Http.Core;
+    using Core;
+    using Results;
 
     [Route("api/[controller]")]
     [ApiController]
@@ -14,6 +15,18 @@
         {
             try
             {
+                var exampleBody = new {name = "Kam", age = "old", mode = "testing"};
+
+                if (firstName == "custom")
+                {
+                    return new MyBadRequestResult(
+                        new []
+                        {
+                            Http400Reasons.ArgumentErrorTest1, 
+                            Http400Reasons.ArgumentErrorTest2
+                        }, exampleBody);
+                }
+
                 if (firstName == "throw")
                 {
                     throw new Exception("test path");

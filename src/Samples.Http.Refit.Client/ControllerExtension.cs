@@ -1,5 +1,6 @@
 ﻿namespace Samples.Http.Client
 {
+    using Core;
     using System;
     using System.Threading.Tasks;
     using Refit;
@@ -18,7 +19,11 @@
             }
             catch (ApiException ex) when ((int) ex.StatusCode == 400)
             {
-                throw new ArgumentException("you done wrong, man!");
+                throw new Exception($"(HTTP 400) \n\t{string.Join("\n\t", ex.Headers.GetValues(HttpHeaders.ReasonHeader))}");
+            }
+            catch (ApiException ex) when ((int)ex.StatusCode == 500)
+            {
+                throw new Exception("(HTTP 500)");
             }
             catch (Exception)
             {
